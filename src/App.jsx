@@ -27,7 +27,7 @@ const App = () => {
   return (
     <>
       <div>
-        <h1 style={{ backgroundColor: "deepgreen" }}>Map</h1>
+        <h4 style={{ backgroundColor: "deepgreen" }}>Map</h4>
       </div>
       <div style={{ backgroundColor: "white"}}>
         {/* location input div */}
@@ -44,8 +44,17 @@ const App = () => {
           </div>
         </div>
         {/* map div */}
-        <div>
-          <MapPage location={location.toLowerCase()} />
+        <div style={{display:"flex"}} className='mapDivStyle'>
+          <div>
+            <MapPage location={location.toLowerCase()} />
+          </div>
+          <div className='subLocationDivStyle'>
+            <h4>Sub locations</h4>
+            <hr />
+            <div>
+          
+            </div>
+          </div>
         </div>
       </div>
     </>

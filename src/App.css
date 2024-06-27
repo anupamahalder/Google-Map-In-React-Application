@@ -42,10 +42,11 @@
 }
 
 .inputDivStyle{
-  margin: auto;
+  margin: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 .inputFieldStyle{
   border-radius: 8px;
@@ -61,4 +62,12 @@
   height: 40px;
   background-color: rgb(247, 54, 54);
   box-shadow: 4px 4px 8px grey;
+}
+.mapDivStyle{
+  border-top: 2px solid black;
+  border-width: auto;
+}
+.subLocationDivStyle{
+  width: 300px;
+  color: black;
 }
