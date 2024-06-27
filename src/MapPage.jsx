@@ -7,6 +7,7 @@ const MapPage = ({ location }) => {
   const [position, setPosition] = useState({ lat: 22.5726, lng: 88.3639 });
   const [open, setOpen] = useState(false);
   const [subLocalities, setSubLocalities] = useState([]);
+  const [locationType, setLocationType] = useState('city');
 
   
 
@@ -67,6 +68,10 @@ const MapPage = ({ location }) => {
         try {
           const response = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${location}&key=${process.env.REACT_APP_OPENCAGE_API_KEY}`);
           const data = await response.json();
+          console.log(data);
+          const type = data.results[0].components._type
+          setLocationType(type);
+          console.log(type);
           if (data.results && data.results.length > 0) {
             const coordinates = data.results[0].geometry; // Change this line
             setPosition(coordinates);
@@ -101,14 +106,14 @@ const MapPage = ({ location }) => {
           {open && (
             <InfoWindow position={position}>
               <p style={{ color: "black" }}>Location: {location}</p>
-              {subLocalities.length > 0 && (
-                  <p style={{ color: "black" }}>Sub-localities: {subLocalities.join(', ')}</p>
-                )}
             </InfoWindow>
           )}
         </Map>
-        <NearbySublocations style={{backgroundColor:"green"}} latitude={position.lat} longitude={position.lng} />
-
+        <div>
+          {
+            subLocalities && subLocalities.map(local =><li>{local.formatted}</li>)
+          }
+        </div>
       </div>
     </APIProvider>
   );

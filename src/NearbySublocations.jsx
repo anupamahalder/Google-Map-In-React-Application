@@ -1,17 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const NearbySublocations = ({ latitude, longitude }) => {
+const NearbySublocations = ({ location }) => {
   const [nearbyLocations, setNearbyLocations] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const getNearbyLocations = async (lat, lng) => {
+    const getNearbyLocations = async (location) => {
+      setLoading(true);
       try {
-        const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`);
+        const response = await fetch(`https://maps.googleapis.com/maps/api/place/textsearch/json?query=${location}+nearby&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`);
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch');
+        }
+
         const data = await response.json();
-        console.log(data);
         handleGeocodeResponse(data);
       } catch (error) {
+        setError('Failed to fetch nearby locations');
         console.error('Error fetching nearby locations:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -25,17 +35,27 @@ const NearbySublocations = ({ latitude, longitude }) => {
           }));
           setNearbyLocations(sublocations);
         } else {
+          setError('No results found for the location');
           console.error('No results found for the location');
         }
       } else {
-        console.error('Geocoding request failed with status:', data.status);
+        setError(`Geocoding request failed with status: ${data.status}`);
+        console.error(`Geocoding request failed with status: ${data.status}`);
       }
     };
 
-    if (latitude && longitude) {
-      getNearbyLocations(latitude, longitude);
+    if (location) {
+      getNearbyLocations(location);
     }
-  }, [latitude, longitude]);
+  }, [location]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div>

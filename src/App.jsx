@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './App.css';
 import MapPage from './MapPage';
+import NearbySublocations from './NearbySublocations';
+import StateNamesComponent from './StateNamesComponent';
 
 const App = () => {
   const [inputValue, setInputValue] = useState('');
@@ -51,9 +53,8 @@ const App = () => {
           <div className='subLocationDivStyle'>
             <h4>Sub locations</h4>
             <hr />
-            <div>
-          
-            </div>
+            <NearbySublocations location={location} />
+            <StateNamesComponent/>
           </div>
         </div>
       </div>
