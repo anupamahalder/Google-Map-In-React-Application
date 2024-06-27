@@ -40,3 +40,25 @@
 .read-the-docs {
   color: #888;
 }
+
+.inputDivStyle{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inputFieldStyle{
+  border-radius: 8px;
+  width: 500px;
+  height: 40px;
+  margin-right: 10px;
+  font-size: 16px;
+  box-shadow: 4px 4px 8px grey;
+  padding-left: 10px;
+  background-color: #3d3d3d;
+}
+.searchBtnStyle{
+  height: 40px;
+  background-color: rgb(247, 54, 54);
+  box-shadow: 4px 4px 8px grey;
+}

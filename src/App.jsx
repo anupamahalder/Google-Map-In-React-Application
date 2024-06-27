@@ -31,15 +31,17 @@ const App = () => {
       </div>
       <div style={{ backgroundColor: "white"}}>
         {/* location input div */}
-        <div style={{ display: "flex", gap: "5px", padding:"10px 0px 0px 10px"}}>
-          <input
+        <div style={{ display: "flex", gap: "5px", padding:"10px 0px 0px 10px"}} className='inputDivStyle'>
+          <div>
+          <input className='inputFieldStyle'
             type="text"
             placeholder="Enter a location"
             value={inputValue}
             onChange={handleInputChange}
             onKeyPress={handleKeyPress}
           />
-          <button type="button" onClick={handleButtonClick}>Search</button>
+          <button type="button" className='searchBtnStyle' onClick={handleButtonClick}>Search</button>
+          </div>
         </div>
         {/* map div */}
         <div>
