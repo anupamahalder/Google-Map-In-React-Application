@@ -56,10 +56,10 @@ const GlobalMap = ({ location }) => {
 
                   const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&units=metric&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`);
                   const weatherData = await weatherResponse.json();
-                  return { subLocation, weather: weatherData };
+                  return { subLocation, weather: weatherData, coordinates: { lat, lng } };
                 } catch (error) {
                   console.error(`Error fetching weather data for ${subLocation}:`, error);
-                  return { subLocation, weather: null };
+                  return { subLocation, weather: null, coordinates: null };
                 }
               });
 
@@ -106,6 +106,13 @@ const GlobalMap = ({ location }) => {
                   <p style={{ color: "black" }}>Location: {location}</p>
                 </InfoWindow>
               )}
+              {hotSubLocations.map(({ coordinates }, index) => (
+                coordinates && (
+                  <AdvancedMarker key={index} position={coordinates}>
+                    <Pin background={"orange"} borderColor={"red"} glyph="🔥" />
+                  </AdvancedMarker>
+                )
+              ))}
             </Map>
           </div>
         </APIProvider>
@@ -116,11 +123,11 @@ const GlobalMap = ({ location }) => {
         <hr />
         <div>
           {subLocalities.length > 0 ? (
-            <div style={{textAlign: "left", paddingLeft:"20px"}}>
+            <div>
               <h4>Showing Results for location: {location}</h4>
               {hotSubLocations.length > 0 ? (
                 hotSubLocations.map(({ subLocation, weather }, index) => (
-                  <p key={index}><b>{subLocation}</b>: {weather.main.temp}°C ️‍🔥</p>
+                  <p key={index}>{subLocation}: {weather.main.temp}°C</p>
                 ))
               ) : (
                 <p>No sub-locations have crossed the temperature threshold of 30°C.</p>
