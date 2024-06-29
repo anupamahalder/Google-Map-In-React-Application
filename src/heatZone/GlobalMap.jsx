@@ -81,6 +81,8 @@ const GlobalMap = ({ location }) => {
     fetchLocationData();
   }, [location]);
 
+  const hotSubLocations = weatherData.filter(({ weather }) => weather && weather.main && weather.main.temp > 30);
+
   return (
     <div style={{ display: "flex" }} className='mapDivStyle'>
       {/* map container */}
@@ -114,11 +116,15 @@ const GlobalMap = ({ location }) => {
         <hr />
         <div>
           {subLocalities.length > 0 ? (
-            <div>
-                <h4>Showing Results for location: {location}</h4>
-              {weatherData.map(({ subLocation, weather }, index) => (
-                  <p>{subLocation}: {weather && weather.main ? `${weather.main.temp}°C` : 'Weather data not available'}</p>
-              ))}
+            <div style={{textAlign: "left", paddingLeft:"20px"}}>
+              <h4>Showing Results for location: {location}</h4>
+              {hotSubLocations.length > 0 ? (
+                hotSubLocations.map(({ subLocation, weather }, index) => (
+                  <p key={index}><b>{subLocation}</b>: {weather.main.temp}°C ️‍🔥</p>
+                ))
+              ) : (
+                <p>No sub-locations have crossed the temperature threshold of 30°C.</p>
+              )}
             </div>
           ) : (
             <p>No sub-localities found.</p>

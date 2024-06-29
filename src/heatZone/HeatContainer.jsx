@@ -13,14 +13,14 @@ const HeatContainer = () => {
   const handleKeyPress = (event) => {
     if (event.key === 'Enter' && inputValue) {
       console.log(inputValue);
-      setLocation(inputValue);
+      setLocation(inputValue.toLowerCase());
     }
   };
 
   const handleButtonClick = (event) => {
     if (inputValue) {
       console.log(inputValue);
-      setLocation(inputValue);
+      setLocation(inputValue.toLowerCase());
     }
   };
 
