@@ -50,33 +50,33 @@ const map = {
     "nadia": [
         "Karimpur", "Tehatta", "Palashipara", "Kaliganj", "Nakshipara", "Chapra", 
         "Krishnanagar Uttar", "Nabadwip", "Krishnanagar Dakshin", "Santipur", 
-        "Ranaghat Uttar Paschim", "Krishnaganj (SC)", "Ranaghat Uttar Purba (SC)", 
-        "Ranaghat Dakshin (SC)", "Chakdaha", "Kalyani (SC)", "Haringhata (SC)"
+        "Ranaghat Uttar Paschim", "Krishnaganj", "Ranaghat Uttar Purba", 
+        "Ranaghat Dakshin", "Chakdaha", "Kalyani", "Haringhata"
     ],
     "east medinapore": [
         "Tamluk", "Panskura Purba", "Panskura Paschim", "Moyna", "Nandakumar", 
-        "Mahisadal", "Haldia (SC)", "Nandigram", "Chandipur", "Patashpur", 
-        "Kanthi Uttar", "Bhagabanpur", "Khejuri (SC)", "Kanthi Dakshin", 
+        "Mahisadal", "Haldia", "Nandigram", "Chandipur", "Patashpur", 
+        "Kanthi Uttar", "Bhagabanpur", "Khejuri", "Kanthi Dakshin", 
         "Ramnagar", "Egra"
     ],
     "howrah": [
         "Domjur", "Jagatballavpur", "Udaynarayanpur", "Amta", "Bagnan", 
-        "Shyampur", "Uluberia Dakshin", "Uluberia Uttar (SC)", "Uluberia Purba", 
-        "Panchla", "Sankrail (SC)", "Howrah Dakshin", "Shibpur", "Howrah Madhya", 
+        "Shyampur", "Uluberia Dakshin", "Uluberia Uttar", "Uluberia Purba", 
+        "Panchla", "Sankrail", "Howrah Dakshin", "Shibpur", "Howrah Madhya", 
         "Howrah Uttar", "Bally"
     ],
     "kolkata":[
         "kolkata uttar", "Chowrangee", "Entally", "Beleghata", "Jorasanko", "Shyampukur", "Maniktala",
-        "Kashipur-Belgachhia", "Kolkata Dakshin", "Bhabanipur", "Rashbehari", "Ballygunge"
+        "Kashipur Belgachhia", "Kolkata Dakshin", "Bhabanipur", "Rashbehari", "Ballygunge"
     ],
     "maldah": [
-        "Habibpur (ST)", "Gazole (SC)", "Chanchal", "Harishchandrapur", 
-        "Malatipur", "Ratua", "Manikchak", "Maldaha (SC)", 
+        "Habibpur", "Gazole", "Chanchal", "Harishchandrapur", 
+        "Malatipur", "Ratua", "Manikchak", "Maldaha", 
         "English Bazar", "Mothabari", "Sujapur", "Baisnabnagar"
     ],
     "jalpaiguri": [
         "Dhupguri", "Maynaguri", "Jalpaiguri", 
-        "Rajganj", "Dabgram-Phulbari", "Mal", "Nagrakata"
+        "Rajganj", "Dabgram Phulbari", "Mal", "Nagrakata"
     ],
     "alipurduar": [
         "Kumargram", "Kalchini", "Alipurduars", "Falakata", "Madarihat"
@@ -94,23 +94,25 @@ const map = {
         "Raiganj", "Itahar"
     ],
     "purulia":[
-        "Purulia-I", "Purulia-II", "Hura", "Balarampur", "Arsha"
+        "Purulia I", "Purulia II", "Hura", "Balarampur", "Arsha"
     ],
     "cooch behar": [
         "Mekliganj", "Mathabhanga", "Cooch Behar Uttar", "Cooch Behar Dakshin", "Sitalkuchi", "Sitai", 
         "Dinhata", "Natabari", "Tufanganj"
     ],
     "darjeeling":[
-        "Darjeeling", "Kurseong", "Matigara-Naxalbari", "Siliguri", "Phansidewa"
+        "Darjeeling", "Kurseong", "Matigara Naxalbari", "Siliguri", "Phansidewa"
     ],
     "dakshin dinajpur": [
         "Kushmandi", "Kumarganj", "Balurghat", "Tapan", "Gangarampur", "Harirampur"
     ],
     "kalimpong":[
-        "Bong", "Kalimpong", "Samalbong", "Tista", "Dr. Graham's Homes", "Lower Echhay", "Samthar", "Neembong", "Dungra", "Upper Echhay", "Seokbir", "Bhalukhop", "Yangmakum", "Pabringtar", "Sindebong", "Kafer Kanke Bong", "Pudung and Tashiding", "Dalapchand", "Gitdabling", "Lava-Gitabeong", "Lolay", "Payong", "Shangse", "Shantuk", "Dalim", "Gorubathan-I", "Gorubathan-II", "Patengodak", "Todey Tangta", "Kumai", "Pokhreybong", "Samsing", "Aahaley", "Nim and Rongo", "Kage", "Kashyong", "Lingsey", "Lingseykha", "Pedong and Syakiyong"
+        "Bong", "Kalimpong", "Samalbong", "Tista", "Dr. Graham's Homes", "Lower Echhay", "Samthar", "Neembong", "Dungra", "Upper Echhay", "Seokbir", "Bhalukhop", "Yangmakum", "Pabringtar", "Sindebong", "Kafer Kanke Bong", "Pudung and Tashiding", "Dalapchand", "Gitdabling", "Lava Gitabeong", "Lolay", "Payong", "Shangse", "Shantuk", "Dalim", "Gorubathan I", "Gorubathan II", "Patengodak", "Todey Tangta", "Kumai", "Pokhreybong", "Samsing", "Aahaley", "Nim and Rongo", "Kage", "Kashyong", "Lingsey", "Lingseykha", "Pedong and Syakiyong"
     ],
     "jhargram":[
-        "Jhargram", "Jamboni", "Binpur-I", "Binpur-II", "Gopiballavpur-I", "Gopiballvapur-II","Sankrail",
+        "Jhargram", "Jamboni", "Binpur I", "Binpur II", "Gopiballavpur I", "Gopiballvapur II","Sankrail",
         "Nayagram"
     ]
 }   
+
+export default map;

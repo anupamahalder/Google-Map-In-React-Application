@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { APIProvider, Map, AdvancedMarker, Pin, InfoWindow } from '@vis.gl/react-google-maps';
-import NearbySublocations from './NearbySublocations';
 
 const MapPage = ({ location }) => {
   const [position, setPosition] = useState({ lat: 22.5726, lng: 88.3639 });
@@ -10,57 +9,6 @@ const MapPage = ({ location }) => {
   const [locationType, setLocationType] = useState('city');
 
   
-
-  // // Geolocation details 
-  // useEffect(() => {
-  //   const getLocationDetails = async (location) => {
-  //     try {
-  //       const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(location)}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`);
-  //       const data = await response.json();
-  //       console.log(data);
-  //       handleGeocodeResponse(data);
-  //     } catch (error) {
-  //       console.error('Error geocoding location:', error);
-  //     }
-  //   };
-
-  //   const handleGeocodeResponse = (data) => {
-  //     if (data.status === 'OK') {
-  //       const results = data.results;
-  //       if (results && results.length > 0) {
-  //         const addressComponents = results[0].address_components;
-  //         const filteredLocations = filterLocations(addressComponents);
-  //         setSubLocations(filteredLocations);
-  //         const { lat, lng } = results[0].geometry.location;
-  //         setPosition({ lat, lng });
-  //       } else {
-  //         console.error('No results found for the location');
-  //       }
-  //     } else {
-  //       console.error('Geocoding request failed with status:', data.status);
-  //     }
-  //   };
-
-  //   const filterLocations = (addressComponents) => {
-  //     let locations = [];
-  //     // Filter for state-level components
-  //     const states = addressComponents.filter(component =>
-  //       component.types.includes('administrative_area_level_1')
-  //     );
-  //     states.forEach(state => {
-  //       locations.push(state.long_name);
-  //     });
-  //     return locations;
-  //   };
-
-  //   if (location) {
-  //     console.log("Searching for location: " + location);
-  //     getLocationDetails(location);
-  //   }
-  // }, [location]);
-    
-  
-
   useEffect(() => {
     if (location) {
       console.log("have to search: " + location);
