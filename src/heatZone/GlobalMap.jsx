@@ -117,9 +117,7 @@ const GlobalMap = ({ location }) => {
             <div>
                 <h4>Showing Results for location: {location}</h4>
               {weatherData.map(({ subLocation, weather }, index) => (
-                <li key={index}>
                   <p>{subLocation}: {weather && weather.main ? `${weather.main.temp}°C` : 'Weather data not available'}</p>
-                </li>
               ))}
             </div>
           ) : (
