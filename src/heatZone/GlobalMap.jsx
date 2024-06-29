@@ -9,12 +9,13 @@ const GlobalMap = ({ location }) => {
   const [subLocalities, setSubLocalities] = useState([]);
   const [locationType, setLocationType] = useState('city');
   const [weatherData, setWeatherData] = useState([]);
+  const [mainLocationWeather, setMainLocationWeather] = useState(null);
 
   useEffect(() => {
     const fetchLocationData = async () => {
       if (location) {
         try {
-          // Fetch geocode data
+          // Fetch geocode data for main location
           const geocodeResponse = await fetch(`https://api.opencagedata.com/geocode/v1/json?q=${location}&key=${process.env.REACT_APP_OPENCAGE_API_KEY}`);
           const geocodeData = await geocodeResponse.json();
           console.log('Geocode data:', geocodeData);
@@ -25,6 +26,12 @@ const GlobalMap = ({ location }) => {
             const coordinates = geocodeData.results[0].geometry;
             setPosition(coordinates);
             console.log('Updated position:', coordinates);
+
+            // Fetch weather data for main location
+            const weatherResponse = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.lat}&lon=${coordinates.lng}&units=metric&appid=${process.env.REACT_APP_OPENWEATHER_API_KEY}`);
+            const weatherData = await weatherResponse.json();
+            setMainLocationWeather(weatherData);
+            console.log('Main location weather data:', weatherData);
 
             // Fetch sub-localities
             if (map[location]) {
@@ -67,10 +74,10 @@ const GlobalMap = ({ location }) => {
               setWeatherData(weatherResults);
               console.log('Weather data:', weatherResults);
             } else {
-              console.error('No sub-localities found for the location');
+              console.log('No sub-localities found for the location');
             }
           } else {
-            console.error('No results found for the location');
+            console.log('No results found for the location');
           }
         } catch (error) {
           console.error('Error fetching location data:', error);
@@ -82,6 +89,7 @@ const GlobalMap = ({ location }) => {
   }, [location]);
 
   const hotSubLocations = weatherData.filter(({ weather }) => weather && weather.main && weather.main.temp > 30);
+  const isMainLocationHot = mainLocationWeather && mainLocationWeather.main && mainLocationWeather.main.temp > 30;
 
   return (
     <div style={{ display: "flex" }} className='mapDivStyle'>
@@ -99,7 +107,7 @@ const GlobalMap = ({ location }) => {
               fullscreenControl={false}
             >
               <AdvancedMarker position={position} onClick={() => setOpen(!open)}>
-                <Pin background={"red"} borderColor={"green"} glyphColor={"blue"} />
+                <Pin background={isMainLocationHot ? "orange" : "red"} borderColor={"green"} glyphColor={"blue"} glyph={isMainLocationHot ? "🔥" : null} />
               </AdvancedMarker>
               {open && (
                 <InfoWindow position={position}>
@@ -123,15 +131,22 @@ const GlobalMap = ({ location }) => {
         <hr />
         <div>
           {subLocalities.length > 0 ? (
-            <div>
-              <h4>Showing Results for location: {location}</h4>
+            <div style={{textAlign:"left", paddingLeft:"20px"}}>
+              <h4>Showing Results for location: {location.toUpperCase()}</h4>
               {hotSubLocations.length > 0 ? (
                 hotSubLocations.map(({ subLocation, weather }, index) => (
-                  <p key={index}>{subLocation}: {weather.main.temp}°C</p>
+                  <p key={index}><b>{subLocation}</b>: {weather.main.temp}°C ️‍🔥</p>
                 ))
+              ) : isMainLocationHot ? (
+                <p>{location}: {mainLocationWeather.main.temp}°C</p>
               ) : (
                 <p>No sub-locations have crossed the temperature threshold of 30°C.</p>
               )}
+            </div>
+          ) : isMainLocationHot ? (
+            <div>
+              <h4>Showing Results for location: {location}</h4>
+              <p>{location}: {mainLocationWeather.main.temp}°C</p>
             </div>
           ) : (
             <p>No sub-localities found.</p>
